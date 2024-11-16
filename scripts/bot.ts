@@ -1,7 +1,7 @@
 const { Telegraf } = require("telegraf");
 const jwt = require("jsonwebtoken");
 const nodeCrypto = require("crypto");
-require('dotenv').config();
+require("dotenv").config();
 
 // Environment variables
 const TOKEN = process.env.TELEGRAM_BOT_TOKEN;
@@ -48,6 +48,9 @@ bot.start((ctx: any) => {
   // URL-encode the generated JWT for safe usage in a URL
   const encodedTelegramAuthToken = encodeURIComponent(telegramAuthToken);
 
+  console.log("[DEBUG] Encoded Telegram auth token:", encodedTelegramAuthToken);
+  console.log("[DEBUG] Login URL:", LOGIN_URL);
+
   // Create the inline keyboard with the Mini Web App button
   const keyboard = {
     reply_markup: {
@@ -70,7 +73,7 @@ bot.start((ctx: any) => {
 
 // Launch the bot
 bot.launch();
-console.log('[DEBUG] Bot script connected...');
+console.log("[DEBUG] Bot script connected...");
 
 /**
  * Function to generate HMAC hash for Telegram authentication
